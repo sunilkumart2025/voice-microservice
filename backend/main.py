@@ -16,7 +16,10 @@ app = FastAPI(lifespan=lifespan)
 # Establish strict CORS rule permissions so your React dashboard can talk to it safely
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=[
+        "http://localhost:5173",
+        "https://voice-microservice.vercel.app/"
+        ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
