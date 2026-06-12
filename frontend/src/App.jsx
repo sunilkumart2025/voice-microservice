@@ -86,9 +86,9 @@ function STTModule() {
               <Cpu size={16} />
               <span style={{ fontSize: '11px', fontFamily: 'monospace', tracking: '0.1em', uppercase: 'true' }}>PROCESSING UNIT</span>
             </div>
-            <h3 style={{ fontSize: '20px', fontWeight: '700', color: '#ffffff' }}>Speech Stream</h3>
+            <h3 style={{ fontSize: '20px', fontWeight: '700', color: '#ffffff' }}>Voice Input</h3>
             <p style={{ fontSize: '13px', color: '#9ca3af', marginTop: '8px', lineHeight: '1.5' }}>
-              {isRecording ? "Listening to acoustic waves down the local hardware channel..." : "Initialize the voice interface to stream frequencies to the model."}
+              {isRecording ? "Listening to acoustic waves down the local hardware channel..." : "Start recording to convert your speech into text."}
             </p>
           </div>
 
@@ -105,7 +105,7 @@ function STTModule() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', color: '#22d3ee', backgroundColor: 'rgba(34, 211, 238, 0.05)', padding: '12px', borderRadius: '12px', border: '1px solid rgba(34, 211, 238, 0.1)', fontSize: '12px', fontWeight: '600' }}>
                   <FileAudio size={16} />
-                  <span>VOICE PAYLOAD READY</span>
+                  <span>Audio Ready for Processing</span>
                 </div>
                 <div style={{ display: 'flex', gap: '8px' }}>
                   <button 
@@ -114,7 +114,7 @@ function STTModule() {
                     style={{ flex: 1, backgroundColor: '#9333ea', color: '#ffffff', padding: '12px', borderRadius: '12px', fontWeight: '600', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', border: 'none', cursor: 'pointer', opacity: isUploading ? 0.5 : 1 }}
                   >
                     {isUploading && <Loader2 size={14} className="animate-spin" />}
-                    {isUploading ? 'Computing...' : 'Transcribe'}
+                    {isUploading ? 'Transcribing Audio...' : 'Transcribe'}
                   </button>
                   <button 
                     onClick={() => { setAudioBlob(null); setTranscriptionResult(null); }}
@@ -169,7 +169,7 @@ function STTModule() {
                 <Mic size={22} />
               </div>
               <p style={{ fontSize: '12px', color: '#4b5563', maxWidth: '240px', lineHeight: '1.5' }}>
-                No active payload decoded. Stream voice waves to view structured segment text maps.
+                No transcription available yet. Record or upload audio to see the generated text.
               </p>
             </div>
           )}
@@ -199,11 +199,12 @@ function TTSModule() {
   return (
     <div style={{ display: 'grid', gridTemplateColumns: 'window.innerWidth > 768 ? "repeat(5, minmax(0, 1fr))" : "1fr"', gap: '24px', width: '100%' }} className="grid grid-cols-1 md:grid-cols-5">
       {/* Parameters */}
+      {/*demo push */}
       <form onSubmit={handleSynthesize} style={{ backgroundColor: '#13112c', borderRadius: '24px', border: '1px solid rgba(147, 51, 234, 0.15)', padding: '24px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '280px' }} className="md:col-span-2">
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#6366f1' }}>
             <Sliders size={16} />
-            <span style={{ fontSize: '11px', fontFamily: 'monospace', tracking: '0.1em' }}>SYNTHESIS MATRIX</span>
+            <span style={{ fontSize: '11px', fontFamily: 'monospace', tracking: '0.1em' }}>Voice Configuration</span>
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
@@ -333,10 +334,10 @@ export default function App() {
         <div style={{ padding: '16px', margin: '16px', borderRadius: '16px', backgroundColor: 'rgba(19, 17, 44, 0.4)', border: '1px solid rgba(147, 51, 234, 0.05)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '10px', fontFamily: 'monospace', color: '#34d399', fontWeight: '700', textTransform: 'uppercase', tracking: '0.05em' }}>
             <Shield size={12} />
-            <span>LOCAL MATRIX</span>
+            <span>Local Processing</span>
           </div>
           <p style={{ fontSize: '11px', color: '#4b5563', marginTop: '6px', lineHeight: '1.4', margin: '4px 0 0 0' }}>
-            Acoustic signals are fully contained. Zero cloud telemetry exit channels configured.
+            Your audio is processed locally and never sent to external cloud services.
           </p>
         </div>
       </aside>
@@ -348,10 +349,10 @@ export default function App() {
         <header style={{ padding: '24px 48px', borderBottom: '1px solid rgba(147, 51, 234, 0.05)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'rgba(9, 7, 20, 0.4)', backdropFilter: 'blur(8px)' }}>
           <div>
             <h2 style={{ fontSize: '20px', fontWeight: '800', color: '#ffffff', margin: 0, tracking: '-0.02em' }}>
-              {activeTab === "stt" ? "Acoustic Transcription Engine" : "Waveform Synthesizer Console"}
+              {activeTab === "stt" ? "Speech-to-Text Engine" : "Text-to-Speech Studio"}
             </h2>
             <p style={{ fontSize: '12px', color: '#4b5563', margin: '2px 0 0 0' }}>
-              {activeTab === "stt" ? "Host-isolated neural audio mapping utilizing local ctranslate2 pools." : "Parametric wave generation across multi-lingual speech synthesis matrices."}
+              {activeTab === "stt" ? "Convert speech into accurate text using locally hosted AI models." : "Convert text into natural-sounding speech using AI voice models."}
             </p>
           </div>
 
