@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 from app.models.asr_whisper import whisper_worker
 import typing
-
+from fastapi.middleware.cors import CORSMiddleware
 # Lifecycle management for pre-warming model variables
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -18,8 +18,10 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
-        "https://voice-microservice.vercel.app/"
-        ],
+        "https://voice-microservice.vercel.app"
+    ],
+    # This regex dynamically matches all vercel.app preview subdomains for your project
+    allow_origin_regex=r"https://voice-microservice-.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
