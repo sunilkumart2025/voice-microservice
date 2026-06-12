@@ -4,7 +4,7 @@ FROM python:3.11-slim
 # Install system dependencies required for audio processing and ML runtimes
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ffmpeg \
-    & apt-get clean \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 # Set the working execution space inside the container

@@ -60,7 +60,7 @@ export default function App() {
     formData.append('file', audioBlob, 'user_voice_capture.webm');
 
     try {
-      const response = await fetch('http://localhost:8000/v1/stt', {
+      const response = await fetch('https://voice-stt-backend.onrender.com/v1/stt', {
         method: 'POST',
         body: formData,
       });
